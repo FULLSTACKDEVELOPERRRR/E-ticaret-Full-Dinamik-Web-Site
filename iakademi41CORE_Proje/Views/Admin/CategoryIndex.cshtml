@@ -1,0 +1,96 @@
+﻿@*/admin dosyasındaki table_basic'ten alındı. simple table.
+*@
+
+@model IEnumerable<Category> 
+@{
+    ViewData["Title"] = "CategoryIndex";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+
+<div class="row" style="margin-top:80px;">
+<div class="col-md-2 col-lg-2 col-sm-12 col-xs-12"></div>
+	<div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+		<p>
+			<a asp-action="CategoryCreate" asp-controller="Admin" class=" btn btn-success">YENİ KATEGORİ</a>
+		</p>
+		<!-- BEGIN SAMPLE TABLE PORTLET-->
+		<div class="portlet box red">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-cogs"></i>KATEGORİ LİSTESİ
+				</div>
+				
+			</div>
+			<div class="portlet-body">
+				<div class="table-scrollable">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>
+									@Html.DisplayNameFor(model => model.CategoryID)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.CategoryName)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.Active)
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+
+
+							@foreach (var item in Model.Where(c=> c.ParentID == 0))
+							{
+								<tr>
+									<td>
+										@Html.DisplayFor(model => item.CategoryID)
+									</td>
+									<td>
+										<span style=" background-color:greenyellow;color:black;font-size:20px;">
+											@Html.DisplayFor(model => item.CategoryName)
+										</span>
+										
+									</td>
+
+
+									<td>
+										@if (item.Active)
+										{
+											<label style="background-color:green;color:white;">Aktif</label>
+										}
+										else
+										{
+											<label style="background-color:red;color:white;">Pasif</label>
+										}
+									</td>
+
+
+									<td>
+										<a asp-action="CategoryEdit" asp-route-id="@item.CategoryID" class=" btn btn-primary">GÜNCELLE</a>
+										<a asp-action="CategoryDetails" asp-route-id="@item.CategoryID" class=" btn btn-secondary">DETAY</a>
+										<a asp-action="CategoryDelete" asp-route-id="@item.CategoryID" class=" btn btn-danger">SİL</a>
+									</td>
+								</tr>
+
+								@foreach (var subitem in Model)
+								{
+									//yukarıdaki foreachteki ana kategorilerin alt kategorilerini aramak için
+									if (item.CategoryID==subitem.ParentID)
+									{
+										//buraya düşerse alt kategorisi vardır.
+									}
+									
+								}
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- END SAMPLE TABLE PORTLET-->
+	</div>
+</div>

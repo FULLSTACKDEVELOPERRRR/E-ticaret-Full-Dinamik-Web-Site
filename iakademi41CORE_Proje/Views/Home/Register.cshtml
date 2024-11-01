@@ -1,0 +1,77 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<!-- Checkout area start  -->
+<div class="checkout-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="row">
+                    <div class="all-out-area">
+
+                        <div class="col-lg-3"></div>
+
+                        <div class="col-sm-12 col-md-4 col-lg-6">
+                            <div class="bt-info" style="border-color:black;">
+                                <h3 class="proopc-process-title"><span style="background-color:black;color:white;font-size:25px;">ÜYELİK BİLGİLERİNİZİ GİRİNİZ</span>  </</h3>
+                                <div class="chek-full-info">
+                                    <div class="inner-wrap">
+                                        <div class="edit-address">
+                                            <form action="@Url.Action("Register","Home")" method="post">
+
+                                                <div>
+                                                    <div class="inner">
+                                                        <label class="email" asp-for="NameSurname"></label>
+                                                        <input type="text" asp-for="NameSurname">
+                                                        <span asp-validation-for="NameSurname" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <div class="inner">
+                                                        <label class="email">EMAİL *</label>
+                                                        <input type="email" asp-for="Email">
+                                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <div class="inner">
+                                                        <label class="email">ŞİFRE *</label>
+                                                        <input type="password" asp-for="Password">
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <div class="inner">
+                                                        <label class="email">TELEFON *</label>
+                                                        <input type="text" asp-for="Telephone" onkeypress="return numberonly(this, event);">
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <div class="inner">
+                                                        <label class="email">FATURA ADRESİ *</label>
+                                                        <input type="text" asp-for="InvoicesAdress">
+                                                    </div>
+                                                </div>
+
+                                                <input type="submit" name="name" value="KAYDET" class="btn btn-success" />
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- wishlist area end  -->

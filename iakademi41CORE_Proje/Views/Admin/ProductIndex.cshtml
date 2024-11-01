@@ -1,0 +1,178 @@
+﻿@*/admin dosyasındaki table_basic'ten alındı. simple table.
+*@
+
+@model IEnumerable<Product>
+@{
+	ViewData["Title"] = "ProductIndex";
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+	iakademi41Context context = new iakademi41Context();
+	string CategoryName = "";
+	string BrandName = "";
+	string StatusName = "";
+}
+
+
+
+
+<div class="row" style="margin-top:60px;">
+	<div class="col-md-2 col-lg-2 col-sm-12 col-xs-12"></div>
+	<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+		<p>
+			<a asp-action="ProductCreate" asp-controller="Admin" class=" btn btn-success">YENİ ÜRÜN</a>
+		</p>
+		<!-- BEGIN SAMPLE TABLE PORTLET-->
+		<div class="portlet box red">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-cogs"></i>ÜRÜN LİSTESİ
+				</div>
+
+			</div>
+			<div class="portlet-body">
+				<div class="table-scrollable">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>
+									@Html.DisplayNameFor(model => model.ProductID)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.ProductName)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.UnitPrice)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.CategoryID)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.SupplierID)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.Stock)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.StatusID)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.Related)
+								</th>
+								
+								<th>
+									@Html.DisplayNameFor(model => model.Active)
+								</th>
+
+								<th></th>
+								<th></th>
+								<th></th>
+
+
+
+							</tr>
+							
+						</thead>
+						<tbody>
+
+
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>
+										@Html.DisplayFor(model => item.ProductID)
+									</td>
+									<td>
+										@Html.DisplayFor(model => item.ProductName)
+									</td>
+									<td>
+										@Html.DisplayFor(model => item.UnitPrice)
+									</td>
+									<td>
+										@{
+											CategoryName = context.Categories.FirstOrDefault(c => c.CategoryID == item.CategoryID).CategoryName;
+
+											@CategoryName
+
+										}
+									</td>
+									<td>
+										@{
+											BrandName = context.Suppliers.FirstOrDefault(c => c.SupplierID == item.SupplierID).BrandName;
+
+											@BrandName
+
+										}
+									</td>
+									<td>
+										@Html.DisplayFor(model => item.Stock)
+									</td>
+									
+									<td>
+										@{
+											StatusName = context.Statuses.FirstOrDefault(c => c.StatusID == item.StatusID).StatusName;
+
+											if(item.StatusID ==1)
+											{
+												<span style="background-color:red;color:white;"> @StatusName</span>
+											}
+											else if(item.StatusID==2)
+											{
+												<span style="background-color:#898121;color:white;">@StatusName</span>
+											}
+											else if (item.StatusID == 3)
+											{
+												<span style="background-color:#FF7F3E;color:white;">@StatusName</span>
+											}
+											else if (item.StatusID == 4)
+											{
+												<span style="background-color:#4158A6;color:white;">@StatusName</span>
+											}
+											else if (item.StatusID == 5)
+											{
+												<span style="background-color:#921A40;color:white;">@StatusName</span>
+											}
+											else if (item.StatusID == 6)
+											{
+												<span style="background-color:#1E201E;color:white;">@StatusName</span>
+											}
+											else
+											{
+												<span style="background-color:#365E32;color:white;">@StatusName</span>
+											}
+											
+											@StatusName
+										}
+									</td>
+									<td>
+										@Html.DisplayFor(model => item.Related)
+									</td>
+									<td>
+									@if(item.Active)
+									{
+										<td style="background-color:green;color:white;"> <label>AKTİF</label></td>
+									}
+									else
+									{
+										<td style="background-color:red;color:white;"> <label>PASİF</label></td>
+									}
+									</td>
+									<td>
+										<a asp-action="ProductEdit" asp-route-id="@item.ProductID" class=" btn btn-primary">GÜNCELLE</a>
+									</td>
+									<td>
+										<a asp-action="ProductDetails" asp-route-id="@item.ProductID" class=" btn btn-secondary">DETAY</a>
+									</td>
+									<td>
+										<a asp-action="ProductDelete" asp-route-id="@item.ProductID" class=" btn btn-danger">SİL</a>
+									</td>
+								</tr>
+
+								
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- END SAMPLE TABLE PORTLET-->
+	</div>
+</div>

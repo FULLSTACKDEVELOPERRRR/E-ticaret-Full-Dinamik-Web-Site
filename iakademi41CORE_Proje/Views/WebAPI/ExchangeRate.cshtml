@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "ExchangeRate";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çerçeve Örneği</title>
+    <style>
+        .frame {
+            border: 2px solid #6a0dad; /* Kenar çizgisi rengi */
+            padding: 20px; /* İç boşluk */
+            margin: 20px; /* Dış boşluk */
+            border-radius: 10px; /* Köşe yuvarlama */
+            background-color: #f3f4f6; /* Arka plan rengi */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Gölgelendirme */
+            text-align: center; /* Ortalanmış metin */
+        }
+
+        .info {
+            font-size: 30px; /* Yazı boyutu */
+            background-color: rebeccapurple; /* Arka plan rengi */
+            color: white; /* Yazı rengi */
+            padding: 10px; /* İç boşluk */
+            border-radius: 5px; /* Köşe yuvarlama */
+            display: inline-block; /* Yan yana durmasını sağlar */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="frame">
+        <span class="info">
+            EUR KURU : @ViewBag.eurolis &nbsp;&nbsp; @ViewBag.eurosatis
+        </span>
+    </div>
+    <div class="frame">
+        <span class="info">
+            DOLAR KURU : @ViewBag.dolaralis &nbsp;&nbsp; @ViewBag.dolarsatis
+        </span>
+    </div>
+    <div class="frame">
+        <span class="info">
+            AUD KURU : @ViewBag.AUDdolaralis &nbsp;&nbsp; @ViewBag.AUDdolarsatis
+        </span>
+    </div>
+
+</body>
+</html>
+
+
